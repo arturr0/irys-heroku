@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Results</title>
+</head>
+<body>
+    <h1>Machine Learning Results</h1>
+    <p>Dokładność: {{ result.accuracy }}</p>
+    <p>Przewidziane klasy: {{ result.predictions }}</p>
+    <p>Rzeczywiste klasy: {{ result.actual_labels }}</p>
+
+    <form method="post" action="/">
+        <label for="test_size">Test Size:</label>
+        <input type="number" name="test_size" value="{{ initial_test_size }}" step="0.01" min="0.01" max="1.0" required>
+        <label for="neighbors">Number of Neighbors:</label>
+        <input type="number" name="neighbors" value="{{ initial_neighbors }}" min="1" required>
+        <button type="submit">Update Model</button>
+    </form>
+    {% if plot_img %}
+        <img src="data:image/png;base64,{{ plot_img }}" alt="Predicted Classes">
+    {% endif %}
+</body>
+</html>
